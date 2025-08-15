@@ -1,0 +1,29 @@
+# STM32CubeIDE workspace metadata
+.metadata/
+
+# Build output folders
+**/Debug/
+**/Release/
+
+# STM32CubeIDE / Eclipse project files
+**/.settings/
+*.launch
+*.project
+*.cproject
+
+# Binary and compiled files
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.log
+*.tmp
+*.bak
+*.swp
+*.dep
+
+# OS-specific files
+.DS_Store
+Thumbs.db
