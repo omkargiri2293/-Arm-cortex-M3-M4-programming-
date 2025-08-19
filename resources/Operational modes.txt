@@ -1,0 +1,18 @@
+Operational mode of the processor
+
+M0/M3/M4
+
+processor gives two operational modes 
+1. Thread mode
+2. Handler mode
+
+-> all your application code will execute under "thread mode" of processor.
+This is also called "User mode"
+
+-> All the exception handlers or interrupt handlers will run under the "Handler mode" of the processor.
+
+-> processor always start with "Thread mode"
+
+-> whenever the core meets with the system exception or any external interrupts then the core will change its mode to handler mode in order to 
+service the ISR associated with that system exception or the interrupt. ok?
+

@@ -1,0 +1,19 @@
+Access levels of the processor
+
+M0/M3/M4
+
+-> Processor offers 2 access levels
+   1.Privileged Access Level (PAL)
+   2.Non-Privileged Access Level (NPAL)
+
+-> if your code is running with PAL, then your code has full access to the processor specific resources and restricted registers
+
+-> if your code is running with NPAL, then your code may not have access to some the restricted registers of the processor
+
+-> by default your code will run in PAL
+
+-> when the processor is in "thread mode", its possible to move processor in to NPAL. Once you move out of the PAL to NPAL being in thread mode, then its not possible to come back to PAL unless you change the processor operational mode to "handler mode".
+
+->"Handler mode" code execution is always with PAL.
+
+-> use the CONTROL register of the processor if you want to switch between the access levels.

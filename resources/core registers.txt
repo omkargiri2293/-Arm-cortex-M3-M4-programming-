@@ -1,0 +1,12 @@
+Cortex M processor core registers
+
+-> R0 to R12 (toral 13) registers are for general purpose.
+
+-> all the core registers are 32 bit wide.
+
+-> register R13 is called Stack Pointer(SP).
+
+-> register R14 is called Link Register(LR) and used to hold the return information during function call and exception handling.
+
+-> register R15 is called Program Counter(PC) which holds the address of the next instruction to be executed.
+
