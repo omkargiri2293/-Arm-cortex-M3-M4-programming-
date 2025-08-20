@@ -1,0 +1,17 @@
+Reset sequence of the Cortex M Processor 
+
+-> when you reset the processor, the PC is loaded with the value 0x0000_0000
+
+-> then processor reads the value @ memory location 0x0000_0000 in to MSP	MSP = value@0x0000_0000
+	MSP is a Main Stack Pointer register
+that means processor first initializes the Stack Pointer
+
+-> After that, processor reads the value @ memory location 0x0000_0004 
+in to PC .
+that value is actually address of the reset handler.
+
+-> PC jumps to reset handler.
+
+-> A reset handler is just a C or Assembly function written by you to carry out any initializations required.
+
+-> from reset handler you call your main() function of the application
