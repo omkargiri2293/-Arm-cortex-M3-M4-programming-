@@ -1,0 +1,19 @@
+Banked Stack Pointers
+
+-> Cortex-M processor physically has 3 stack pointers
+	SP(R13), MSP and PSP
+MSP : Main Stack Pointer
+PSP : Process Stack Pointer
+
+SP is called as current stack pointer.
+
+-> After processor reset, by default , MSP will be selected as current stack pointer. That means, SP copies the content of MSP.
+
+-> Thread mode can change the current stack pointer to PSP by configuring the CONTROL register's SPSEL bit.
+
+-> Handler mode code execution will always use MSP as the current stack pointer. That also means that, changing the value of SPSEL bit being in the handler mode doesn't make any sense. The write will be ignored.
+
+-> MSP will be initialized automatically by the processor after reset by reading the content of the address 0x0000_0000 .
+
+-> if you want to use the PSP then make sure that you initialize the PSP to valid stack address in your code.
+
