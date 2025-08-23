@@ -1,0 +1,6 @@
+ARM Cortex Mx : Different System Exceptions
+
+-> There is room for 15 system exceptions
+-> Exception number 1 is Reset Exception ( or system exception )
+-> Only 9 implemented system exceptions. 6 are reserved for future implementations.
+-> Exception number 16 is interrupt 1 ( IRQ 1 )

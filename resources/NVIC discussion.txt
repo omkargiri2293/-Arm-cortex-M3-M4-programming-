@@ -1,0 +1,30 @@
+NVIC( Nested Vector Interrupt Controller ) discussion 
+
+
+-> NVIC is one of the peripheral of the Cortex M processor core 
+
+-> it is used to configure 240 interrupts
+
+-> using NVIC registers you can Enable/Disable/Pend various interrupts and read the status of active and pending interrupts.
+
+-> you can configure the priority and priority grouping of various interrupts.
+
+-> It is called Nested because it supports pre-empting a lower priority interrupt handler when higher priority interrupts arrives.
+
+
+
+
+
+Enable/Disable/Pend various interrupt using NVIC register.
+
+
+->Cortex M processor supports 240 interrupts
+
+-> These interrupts are managed and configured using NVIC 
+
+-> what are those 240 interrupts ?
+     this is highly vendor specific and it is triggered by various on chip peripherals of the MCU like SPI, GPIOs ,CAN , Timers, DMAs, etc
+
+-> STM32f407xx MCU delivers 83 different interrupts to the processor
+
+-> TIVA MCU delivers 154 different interrupts to the processor out of 250 interrupts supported by the ARM Cortex M processor.
