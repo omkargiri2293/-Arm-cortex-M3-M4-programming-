@@ -22,34 +22,24 @@
 #endif
 
 #include <stdio.h>
+#include "main.h"
 
 void task1_handler(void);//this is task1
 void task2_handler(void);//this is task2
 void task3_handler(void);//this is task3
 void task4_handler(void);//this is task4
 
-/*
- * some stack memory calculations
- */
-#define SIZE_TASK_STACK			1024U
-#define SIZE_SCHED_STACK		1024U
+void init_systick_timer(uint32_t tick_hz);
+__attribute__((naked)) void init_scheduler_stack(uint32_t schd_top_of_stack);
 
-#define SRAM_START				0x20000000U
-#define SIZE_SRAM				((128)*(1024))
-#define SRAM_END				((SRAM_START)+(STZE_SRAM))
 
-#define T1_STACK_START			SRAM_END
-#define T2_STACK_START			((SRAM_END)-(1 * SIZE_TASK_STACK))
-#define T3_STACK_START			((SRAM_END)-(2 * SIZE_TASK_STACK))
-#define T4_STACK_START			((SRAM_END)-(3 * SIZE_TASK_STACK))
-#define SCHED_STACK_START		((SRAM_END)-(4 * SIZE_TASK_STACK))
+uint32_t psp_of_tasks[MAX_TASKS]= {T1_STACK_START,T2_STACK_START,T3_STACK_START,T4_STACK_START);
 
-#define TICK_HZ		1000U
-#define HSI_CLK		32000000U
-#define SYSTICK_TIM_CLK		HSI_CLK
 
 int main(void)
 {
+
+	init_tasks_stack();
 	init_systick_timer(TICK_HZ);
 
 	for(;;);
@@ -93,9 +83,33 @@ void init_systick_timer(uint32_t tick_hz){
 	*pSRVR |= count_value ;
 
 	//do some settings
+	*pSCSR |= (1<<1);//enable systick exception request
+	*pSCSR |= (1<<2);//indicates the clock source , processor clock source
 
 	//enable the systick
-
+	*pSCSR |= (1<<1);//enables the counter
 
 }
 
+__attribute__((naked)) void init_scheduler_stack(uint32_t schd_top_of_stack){
+
+	__asm volatile("MSR MSP ,%0": :"r"(sched_top_of_stack): );
+	__asm volatile("BX LR");
+}
+
+
+void init_tasks_stack(void)
+{
+
+
+	uint32_t *pPSP;
+
+	for(int i=0;i<MAX_TASKS;i++){
+		pPSP = (uint32_t*) psp_of_tasks[i];
+	}
+}
+
+void SysTick_Handler(void){
+
+
+}
